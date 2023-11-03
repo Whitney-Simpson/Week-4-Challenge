@@ -1,50 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Quiz Challenge</title>
 </head>
+
 <body>
     <div class="container">
         <div id="firstpage">
             <h2>Take this quiz to test your coding knowledge</h2>
-        <button id="beginbtn">Click to start quiz</button>
-        <button id="highscorebtn" onclick="showHighscore()">High Scores</button>
+            <button id="beginbtn">Click to start quiz</button>
+            <button id="highscorebtn" onclick="showHighscore()">High Scores</button>
         </div>
 
         <div id="test">
             <div id="timer">Time remaining:</div>
-            <div id="questions"><p>Placeholder for Questions</p></div>
-            <button id="1" on click="checkAnswer('1')">1.</button>
-            <button id="2" on click="checkAnswer('2')">2.</button>
-            <button id="3" on click="checkAnswer('3')">3.</button>
-            <button id="4" on click="checkAnswer('4')">4.</button>
-        <div id="result"></div>
+            <div id="questions">
+                <p>Placeholder for Questions</p>
+            </div>
+            <button id="1" onclick="checkAnswer('1')">1.</button>
+            <button id="2" onclick="checkAnswer('2')">2.</button>
+            <button id="3" onclick="checkAnswer('3')">3.</button>
+            <button id="4" onclick="checkAnswer('4')">4.</button>
+            <div id="result"></div>
         </div>
 
         <div id="end-of-game">
-        <div id="finalScore"></div>
-        <input type="text" size="25" placeholder="Enter intials" name="intials" id="intials"/>
-        <button id="submit-score">Submit Score</button>
-    </div>
-
-    <div id="containerforhighscore">
-        <div id="high-scores">
-        <div id="headerHighScores">
+            <div id="finalScore">
+                <h3>Your Score Is: <span id="score-display"></span></h3>
+            </div>
             <h3>Players Intials</h3>
-            <h3>Score</h3>
+            <input type="text" size="25" placeholder="Enter intials" name="intials" id="intials" />
+            <button id="submit-score">Submit Score</button>
         </div>
-        <div id="high-score-intials"></div>
-        <div id="highscoretotal"></div>
+
+        <div id="containerforhighscore">
+            <div id="high-scores">
+                <div id="headerHighScores">
+                    <h3>Score</h3>
+                </div>
+                <div id="high-score-intials"></div>
+                <div id="highscoretotal"></div>
+            </div>
+            <!-- <div id="end-game-btns">
+                <button id="retry">Retry</button>
+                <button id="clearScores">Clear High Score</button>
+            </div> -->
         </div>
-        <div id="end-game-btns">
-            <button id="retry">Retry</button>
-            <button id="clearScores">Clear High Score</button>
-        </div>
-    </div>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

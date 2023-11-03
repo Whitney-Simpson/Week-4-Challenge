@@ -1,24 +1,28 @@
 //List of elements from HTML to manipulate
 var testframe = document.getElementById("test");
-var results = document.getElementById("result")
+testframe.style.display = "none";
+var results = document.getElementById("result");
 var finalScore = document.getElementById("finalScore");
 var endOfGame = document.getElementById("end-of-game");
+endOfGame.style.display ="none";
 var questions = document.getElementById("questions");
 var timer = document.getElementById("timer");
 var Beginquizbtn = document.getElementById("beginbtn");
 var startPage = document.getElementById("firstpage");
 var containerForHighScore = document.getElementById("containerforhighscore");
+containerForHighScore.style.display ="none";
 var highScoresD = document.getElementById("high-scores");
 var inputForIntials = document.getElementById("intials");
 var displayHighScore = document.getElementById("high-score-intials");
-var endGameBtns = document.getElementById("end-games-btns");
+// var endGameBtns = document.getElementById("end-games-btns");
 var SubmitScoreBtn = document.getElementById("submit-score");
 var highScoreList = document.getElementById("highscoretotal");
 var button1 = document.getElementById("1");
 var button2 = document.getElementById("2");
 var button3 = document.getElementById("3");
 var button4 = document.getElementById("4");
-
+var savedHighScores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
+console.log(savedHighScores);
 
 //Test questions
 var testQuestions = [{
@@ -47,39 +51,34 @@ var testQuestions = [{
     correctAnswer: "3",
 },
 
-// {
-//     question: "",
-//     choice1: "",
-//     choice2: "",
-//     choice3: "",
-//     choice4: "",
-//     correctAnswer: "",
-// },
-
-// {
-//     question: "",
-//     choice1: "",
-//     choice2: "",
-//     choice3: "",
-//     choice4: "",
-//     correctAnswer: "",
-// },
+    // {
+    //     question: "",
+    //     choice1: "",
+    //     choice2: "",
+    //     choice3: "",
+    //     choice4: "",
+    //     correctAnswer: "",
+    // },
+    // {
+    //     question: "",
+    //     choice1: "",
+    //     choice2: "",
+    //     choice3: "",
+    //     choice4: "",
+    //     correctAnswer: "",
+    // },
 ]
 
 //Global variables to add
 var finalQuestionIndex = testQuestions.length;
 var currentQuestionIndex = 0;
-var timeLeft = 90;
+var timeLeft = 60;
 var timerInterval;
 var score = 0;
 var correct;
 
 //Function for the object array containing quiz questions
 function generateTestQuestions() {
-    endOfGame.style.display = 'none';
-    if (currentQuestionIndex === finalQuestionIndex) {
-        return showScore
-    }
 
     var currentQuestion = testQuestions[currentQuestionIndex];
     questions.innerHTML = "<p>" + currentQuestion.question + "</p>";
@@ -98,7 +97,7 @@ function startTest() {
     //Timer
     timerInterval = setInterval(function () {
         timeLeft--;
-        timer.textContent = "Time left:" + timerLeft;
+        timer.textContent = "Time left:" + timeLeft;
 
         if (timeLeft === 0) {
             clearInterval(timerInterval);
@@ -119,13 +118,15 @@ function showScore() {
 
 //Click of subit button will run funciton highscore
 //Pushes new user name and score into the array storing in local storage
-SubmitScoreBtn.addEventListener("click", function highscore() {
+SubmitScoreBtn.addEventListener("click", function() {
+    console.log(inputForIntials);
+    console.log(score);
 
-    if (inputForIntials === "") {
+    if (inputForIntials.value === "") {
         alert("Initials required");
         return false;
     } else {
-        var savedHighScores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+
         var currentPlayer = inputForIntials.value.trim();
         var currentHighScore = {
             name: currentPlayer,
@@ -137,7 +138,6 @@ SubmitScoreBtn.addEventListener("click", function highscore() {
 
 
         highScoresD.style.display = "block";
-        endGameBtns.style.display = "flex";
 
         savedHighScores.push(currentHighScore);
         localStorage.setItem("savedHighScores", JSON.stringify(savedHighScores));
@@ -163,16 +163,15 @@ function generateHighScores() {
 
 //Funtion that displays the high scores page
 
-function showHighScore() {
-    startPage.style.display = "none";
-    endOfGame.style.display = "none";
-    containerForHighScore.style.display = "flex";
-    highScoresD.style.display = "block";
-    endGameBtns.style.display = "flex";
+// function showHighScore() {
+//     startPage.style.display = "none";
+//     endOfGame.style.display = "none";
+//     containerForHighScore.style.display = "flex";
+//     highScoresD.style.display = "block";
+//     endGameBtns.style.display = "flex";
 
-    generateHighScores();
 
-}
+// }
 
 // Function that will clear local storage
 
@@ -195,20 +194,31 @@ function replayTest() {
 //Function that checks the responses with the answers
 
 function checkAnswer(answer) {
+    console.log(answer);
     correct = testQuestions[currentQuestionIndex].correctAnswer;
-
-    if (answer === correct && currentQuestionIndex !== finalQuestionIndex) {
+    document.getElementById("result").textContent = "";
+    if (answer === correct) {
         score++;
-        alert("That is Correct!");
-        currentQuestionIndex++;
-        generateTestQuestions();
-    } else if (answer !== correct && currentQuestionIndex !== finalQuestionIndex) {
-        alert("Inncorrect Answer");
-        currentQuestionIndex++;
-        generateTestQuestions();
+        document.getElementById("result").textContent = "correct";
+        
     } else {
-        showScore();
+        document.getElementById("result").textContent = "incorrect";
     }
+    
+    currentQuestionIndex++;
+    if (currentQuestionIndex === testQuestions.length){
+        testframe.style.display = "none";
+        containerForHighScore.style.display ="block";
+        endOfGame.style.display ="block";
+        // endGameBtns.style.display = "flex";
+        var finalScore = score*timeLeft;
+        console.log(finalScore);
+        document.getElementById("score-display").textContent = finalScore;
+        generateHighScores();
+    } else {
+    generateTestQuestions();
 }
+}
+
 
 Beginquizbtn.addEventListener("click", startTest);
