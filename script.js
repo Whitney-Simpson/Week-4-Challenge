@@ -147,12 +147,12 @@ SubmitScoreBtn.addEventListener("click", function () {
 function generateHighScores() {
     displayHighScore.innerHTML = "";
     highScoreList.innerHTML = "";
-    var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+    var highscores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
     for (i = 0; i < highscores.length; i++) {
         var newName = document.createElement("li");
         var newScore = document.createElement("li");
         newName.textContent = highscores[i].name;
-        newScore.textContent = highscores[i].score;
+        newScore.textContent = `${highscores[i].name} : ${highscores[i].score}`;
         inputForIntials.appendChild(newName);
         highScoreList.appendChild(newScore);
     }
