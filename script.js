@@ -4,17 +4,17 @@ testframe.style.display = "none";
 var results = document.getElementById("result");
 var finalScore = document.getElementById("finalScore");
 var endOfGame = document.getElementById("end-of-game");
-endOfGame.style.display ="none";
+endOfGame.style.display = "none";
 var questions = document.getElementById("questions");
 var timer = document.getElementById("timer");
 var Beginquizbtn = document.getElementById("beginbtn");
 var startPage = document.getElementById("firstpage");
 var containerForHighScore = document.getElementById("containerforhighscore");
-containerForHighScore.style.display ="none";
+containerForHighScore.style.display = "none";
 var highScoresD = document.getElementById("high-scores");
 var inputForIntials = document.getElementById("intials");
 var displayHighScore = document.getElementById("high-score-intials");
-// var endGameBtns = document.getElementById("end-games-btns");
+var endGameBtns = document.getElementById("end-games-btns");
 var SubmitScoreBtn = document.getElementById("submit-score");
 var highScoreList = document.getElementById("highscoretotal");
 var button1 = document.getElementById("1");
@@ -51,28 +51,28 @@ var testQuestions = [{
     correctAnswer: "3",
 },
 
-    // {
-    //     question: "",
-    //     choice1: "",
-    //     choice2: "",
-    //     choice3: "",
-    //     choice4: "",
-    //     correctAnswer: "",
-    // },
-    // {
-    //     question: "",
-    //     choice1: "",
-    //     choice2: "",
-    //     choice3: "",
-    //     choice4: "",
-    //     correctAnswer: "",
-    // },
+{
+    question: "Which tag is used to create a heading element in HTML?",
+    choice1: "head",
+    choice2: "title",
+    choice3: "heading",
+    choice4: "h1",
+    correctAnswer: "4",
+},
+{
+    question: "Which of the elements that requires a container tag?",
+    choice1: "src",
+    choice2: "link",
+    choice3: "button",
+    choice4: "img",
+    correctAnswer: "3",
+},
 ]
 
 //Global variables to add
 var finalQuestionIndex = testQuestions.length;
 var currentQuestionIndex = 0;
-var timeLeft = 60;
+var timeLeft = 90;
 var timerInterval;
 var score = 0;
 var correct;
@@ -113,15 +113,12 @@ function showScore() {
     endOfGame.style.display = "flex";
     clearInterval(timerInterval);
     inputForIntials.value = "";
-    finalScore.innerHTML = "You got " + score + "out of" + testQuestions.length + "right!";
+    finalScore.innerHTML = "You got " + score + "out of " + testQuestions.length + "right!";
 }
 
 //Click of subit button will run funciton highscore
 //Pushes new user name and score into the array storing in local storage
-SubmitScoreBtn.addEventListener("click", function() {
-    console.log(inputForIntials);
-    console.log(score);
-
+SubmitScoreBtn.addEventListener("click", function () {
     if (inputForIntials.value === "") {
         alert("Initials required");
         return false;
@@ -130,7 +127,7 @@ SubmitScoreBtn.addEventListener("click", function() {
         var currentPlayer = inputForIntials.value.trim();
         var currentHighScore = {
             name: currentPlayer,
-            score: score
+            score: score,
         };
 
         endOfGame.style.display = "none";
@@ -161,17 +158,6 @@ function generateHighScores() {
     }
 };
 
-//Funtion that displays the high scores page
-
-// function showHighScore() {
-//     startPage.style.display = "none";
-//     endOfGame.style.display = "none";
-//     containerForHighScore.style.display = "flex";
-//     highScoresD.style.display = "block";
-//     endGameBtns.style.display = "flex";
-
-
-// }
 
 // Function that will clear local storage
 
@@ -184,7 +170,7 @@ function clearScore() {
 //Function that will reset test and startover
 
 function replayTest() {
-    containerForHighScore.style.display = "none";
+    containerForHighScore.style.display = "block";
     endOfGame.style.display = "flex";
     timeLeft = 90;
     score = 0;
@@ -200,24 +186,24 @@ function checkAnswer(answer) {
     if (answer === correct) {
         score++;
         document.getElementById("result").textContent = "correct";
-        
+
     } else {
         document.getElementById("result").textContent = "incorrect";
     }
-    
+
     currentQuestionIndex++;
-    if (currentQuestionIndex === testQuestions.length){
+    if (currentQuestionIndex === testQuestions.length) {
         testframe.style.display = "none";
-        containerForHighScore.style.display ="block";
-        endOfGame.style.display ="block";
+        containerForHighScore.style.display = "block";
+        endOfGame.style.display = "block";
         // endGameBtns.style.display = "flex";
-        var finalScore = score*timeLeft;
+        var finalScore = score * timeLeft;
         console.log(finalScore);
         document.getElementById("score-display").textContent = finalScore;
         generateHighScores();
     } else {
-    generateTestQuestions();
-}
+        generateTestQuestions();
+    }
 }
 
 
