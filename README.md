@@ -1,5 +1,5 @@
-# Week-5-DailyPlanner
-Daily Planner
+# Week-4-Challenge
+Code Quiz
 ## Description
 In our Week 4 Challenge we were asked to create a code quiz.
 ### User Story:
