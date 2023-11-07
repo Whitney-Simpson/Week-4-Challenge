@@ -35,13 +35,12 @@ var testQuestions = [{
     correctAnswer: "2",
 },
 {
-    question: "What does CSS stand for?",
-    choice1: "CSS stands for Cascading Sheets with Style",
-    choice2: "CSS stands for Continuing Style Sheets",
-    choice3: "CSS stands for Cascading Style Strips",
-    choice4: "CSS stands for Cascading Style Sheets",
-    correctAnswer: "4",
-},
+    question: "What way does not declare a JavaScript Variable?",
+    choice1: "Using var",
+    choice2: "Automatically",
+    choice3: "Using Constant",
+    choice4: "Using let",
+    correctAnswer: "3",
 
 {
     question: "What statement regarding JavaScript Display Possibilities is false?",
@@ -53,20 +52,20 @@ var testQuestions = [{
 },
 
 {
-    question: "Which tag is used to create a heading element in HTML?",
-    choice1: "head",
-    choice2: "title",
-    choice3: "heading",
-    choice4: "h1",
-    correctAnswer: "4",
+    question: "Which is not a way the code inside a function executed when something invokes(calls) the function?",
+    choice1: "When an event occurs(when a user clicks a button)",
+    choice2: "Simply writing function",
+    choice3: "When it is invoked(called) from a JavaScript code",
+    choice4: "Automatically(self invoked)",
+    correctAnswer: "2",
 },
 {
-    question: "Which of the elements that requires a container tag?",
-    choice1: "src",
-    choice2: "link",
-    choice3: "button",
-    choice4: "img",
-    correctAnswer: "3",
+    question: "Which JavaScript HTML method gets and element by id?",
+    choice1: "getElementById()",
+    choice2: "getClassBy()",
+    choice3: "getIdElementBy()",
+    choice4: "getElementBy()",
+    correctAnswer: "1",
 },
 ]
 
