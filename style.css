@@ -1,8 +1,22 @@
 * {
     background-color: maroon;
     color: antiquewhite;
+    text-align: center;
 }
 
+#questions {
+    background-color: antiquewhite;
+    color: black;
+    font-size: 25px;
+}
+
+button {
+    width: 25%;
+    height: 25%;
+    background-color: antiquewhite;
+    color: black;
+    font-size: 25px;
+}
 
 .hide {
     display: none;

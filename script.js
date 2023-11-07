@@ -42,6 +42,7 @@ var testQuestions = [{
     choice4: "Using let",
     correctAnswer: "3",
 
+},
 {
     question: "What statement regarding JavaScript Display Possibilities is false?",
     choice1: "Writing into an HTML element, using innerHTML",

@@ -8,15 +8,18 @@ In our Week 4 Challenge we were asked to create a code quiz.
 - SO THAT I can gauge my progress compared to my peers
 ### Acceptance Criteria
 - GIVEN I am taking a code quiz
+![Alt text](image.png)
 - WHEN I click the start button
 - THEN a timer starts and I am presented with a question
+![Alt text](image-1.png)
 - WHEN I answer a question incorrectly
 - THEN time is subtracted from the clock
 - WHEN all questions are answered or the timer reaches 0
 - THEN the game is over
 - WHEN the game is over
 - THEN I can save my intials and score
-
+![Alt text](image-2.png)
+![Alt text](image-3.png)
 ## Installation
 N/A
 ## Usage
