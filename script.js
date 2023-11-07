@@ -24,6 +24,7 @@ var button4 = document.getElementById("4");
 var savedHighScores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
 console.log(savedHighScores);
 
+
 //Test questions
 var testQuestions = [{
     question: "Which of these statements is false?",
@@ -107,16 +108,8 @@ function startTest() {
     testframe.style.display = "block";
 }
 
-//End of page screen which will display score when time runs out
-function showScore() {
-    testframe.style.display = "none";
-    endOfGame.style.display = "flex";
-    clearInterval(timerInterval);
-    inputForIntials.value = "";
-    finalScore.innerHTML = "You got " + score + "out of " + testQuestions.length + "right!";
-}
 
-//Click of subit button will run funciton highscore
+//Click of submit button will run funciton highscore
 //Pushes new user name and score into the array storing in local storage
 SubmitScoreBtn.addEventListener("click", function () {
     if (inputForIntials.value === "") {
@@ -159,24 +152,6 @@ function generateHighScores() {
 };
 
 
-// Function that will clear local storage
-
-function clearScore() {
-    window.localStorage.clear();
-    inputForIntials.textContent = "";
-    highScoreList.textContent = "";
-}
-
-//Function that will reset test and startover
-
-function replayTest() {
-    containerForHighScore.style.display = "block";
-    endOfGame.style.display = "flex";
-    timeLeft = 90;
-    score = 0;
-    currentQuestionIndex = 0;
-}
-
 //Function that checks the responses with the answers
 
 function checkAnswer(answer) {
@@ -185,9 +160,11 @@ function checkAnswer(answer) {
     document.getElementById("result").textContent = "";
     if (answer === correct) {
         score++;
+        //Score is generated here
         document.getElementById("result").textContent = "correct";
-
     } else {
+        timeLeft--,
+        //Subtracts when incorrect
         document.getElementById("result").textContent = "incorrect";
     }
 
@@ -197,8 +174,8 @@ function checkAnswer(answer) {
         containerForHighScore.style.display = "block";
         endOfGame.style.display = "block";
         // endGameBtns.style.display = "flex";
-        var finalScore = score * timeLeft;
-        console.log(finalScore);
+        var finalScore = score;
+        // console.log(finalScore);
         document.getElementById("score-display").textContent = finalScore;
         generateHighScores();
     } else {
